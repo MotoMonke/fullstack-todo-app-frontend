@@ -76,7 +76,7 @@ function App() {
   function deleteTodo(todoId:string):void{
     const selectedList = localStorageData.find(list=>list.id===selectedId);
     if(selectedList){
-      const newDataArray = selectedList.data.filter(todo=>{todo.id!==todoId});
+      const newDataArray = selectedList.data.filter(todo=>todo.id!==todoId);
       editList({
         ...selectedList,
         data:newDataArray,
@@ -107,7 +107,7 @@ function App() {
   return (
     <>
       <Sidebar todosListArrays={localStorageData} addList={addList} deleteList={deleteList} selectedId={selectedId} changeSelectedId={changeSelectedId} />
-      {selectedList&&<DisplayTodos todoList={selectedList}/>}
+      {selectedList&&<DisplayTodos todoList={selectedList} addNewTodo={addNewTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>}
     </>
   )
 }
