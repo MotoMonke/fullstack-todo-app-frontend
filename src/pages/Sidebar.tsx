@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type {TodoList} from "./types.ts"
+import type {TodoList} from "../types.ts"
 type SidebarProps = {
     todosListArrays:TodoList[],
     addList:(listObj:TodoList)=>void,

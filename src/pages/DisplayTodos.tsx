@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type {TodoList,Todo} from "./types.ts";
+import type {TodoList,Todo} from "../types.ts";
 //i can't just make {todoList}:TodoList
 //so i need to make this type name = {todoList:TodoList}
 //to use TodoList type on DisplayTodos props  
