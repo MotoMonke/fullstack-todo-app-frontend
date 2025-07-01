@@ -4,7 +4,7 @@ export type Todo = {
     done:boolean,
   }
 export type TodoList = {
-    id:string,
+    _id:string,
     name:string,
     data:Todo[]
 }

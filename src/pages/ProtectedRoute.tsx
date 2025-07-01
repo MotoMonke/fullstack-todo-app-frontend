@@ -23,7 +23,7 @@ export default function ProtectedRoute() {
         setLoading(false);
       }
     }
-
+    
     checkAuth();
   }, []);
 
