@@ -87,7 +87,7 @@ function GetData(){
                 </div>
             </div>
             <div className="save-data">
-                <h1>Data to save</h1>
+                <h1>Data to save locally</h1>
                 {dataToSave.map(list=>(
                     <div key={list._id} onClick={()=>unstage(list)}>{list.name}</div>
                 ))}

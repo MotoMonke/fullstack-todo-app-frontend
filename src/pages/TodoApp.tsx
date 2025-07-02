@@ -106,6 +106,9 @@ function TodoApp(){
       const selectedList = localStorageData.find(list=>list._id===selectedId);;
       return (
         <>
+          <a href="/get-data">Download data from cloud</a>
+          <br />
+          <a href="/save-data">Save data to cloud</a>
           <Sidebar todosListArrays={localStorageData} addList={addList} deleteList={deleteList} selectedId={selectedId} changeSelectedId={changeSelectedId} />
           {selectedList&&<DisplayTodos todoList={selectedList} addNewTodo={addNewTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>}
         </>

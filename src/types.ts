@@ -4,6 +4,7 @@ export type Todo = {
     done:boolean,
   }
 export type TodoList = {
+    user_id?:String
     _id:string,
     name:string,
     data:Todo[]
