@@ -6,7 +6,7 @@ function Signup(){
     const [userName,setUserName] = useState("");
     const [password,setPassword] = useState("");
     const navigate = useNavigate();
-    const handleSubmit = async (e)=>{
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
 
         try {

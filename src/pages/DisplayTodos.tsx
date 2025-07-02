@@ -24,7 +24,7 @@ function DisplayTodos({todoList,addNewTodo,deleteTodo,editTodo}:DisplayTodosProp
     function createTodo(){
         if(text.length>=1){
             addNewTodo({
-                id:crypto.randomUUID(),
+                _id:crypto.randomUUID(),
                 text:text,
                 done:false,
             });
@@ -39,7 +39,7 @@ function DisplayTodos({todoList,addNewTodo,deleteTodo,editTodo}:DisplayTodosProp
             </div>
             <div className="todo-list">
                 {todoList.data.map(todo=>(
-                    <TodoComponent key={todo.id} todo={todo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                    <TodoComponent key={todo._id} todo={todo} deleteTodo={deleteTodo} editTodo={editTodo}/>
                 ))}
             </div>
         </div>
@@ -53,7 +53,7 @@ function TodoComponent({todo,deleteTodo,editTodo}:TodoComponentProps){
         });
     }
     function handleDelete(){
-        deleteTodo(todo.id);
+        deleteTodo(todo._id);
     }
     const [isEditing,setIsEditing] = useState(false);
     function changeIsEditing(){

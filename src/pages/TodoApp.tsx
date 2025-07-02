@@ -11,16 +11,16 @@ function TodoApp(){
         } else {
           return [
             {
-              id:"1",
+              _id:"1",
               name:"todo",
               data:[
                 {
-                  id:"0",
+                  _id:"0",
                   text:"Visit museum",
                   done:true,
                 },
                 {
-                  id:"1",
+                  _id:"1",
                   text:"By groceries",
                   done:false,
                 }
@@ -37,22 +37,22 @@ function TodoApp(){
         console.log(localStorageData);
       },[localStorageData]);
     
-      function changeSelectedId(id:string):void{
-        setSelectedId(id);
+      function changeSelectedId(_id:string):void{
+        setSelectedId(_id);
       }
     
       function addList(listObj:TodoList):void{
         setLocalStorageData([...localStorageData,listObj]);
       }
-      function deleteList(id:string):void{
-        if(selectedId===id){
+      function deleteList(_id:string):void{
+        if(selectedId===_id){
           setSelectedId("0");
         }
-        setLocalStorageData(localStorageData.filter(list=>list.id!==id));
+        setLocalStorageData(localStorageData.filter(list=>list._id!==_id));
       }
       function editList(editedListObj:TodoList):void{
         const newArray:TodoList[] = localStorageData.map((list)=>{
-          if(list.id===editedListObj.id){
+          if(list._id===editedListObj._id){
             return editedListObj;
           } else {
             return list
@@ -62,7 +62,7 @@ function TodoApp(){
       }
     
       function addNewTodo(newTodoObj:Todo):void{
-        const selectedList = localStorageData.find(list=>list.id===selectedId);
+        const selectedList = localStorageData.find(list=>list._id===selectedId);
         if(selectedList){
           const newDataArray = [...selectedList.data,newTodoObj];
           editList({
@@ -74,9 +74,9 @@ function TodoApp(){
         }
       }
       function deleteTodo(todoId:string):void{
-        const selectedList = localStorageData.find(list=>list.id===selectedId);
+        const selectedList = localStorageData.find(list=>list._id===selectedId);
         if(selectedList){
-          const newDataArray = selectedList.data.filter(todo=>todo.id!==todoId);
+          const newDataArray = selectedList.data.filter(todo=>todo._id!==todoId);
           editList({
             ...selectedList,
             data:newDataArray,
@@ -86,10 +86,10 @@ function TodoApp(){
         }
       }
       function editTodo(editedTodo:Todo):void{
-        const selectedList = localStorageData.find(list=>list.id===selectedId);
+        const selectedList = localStorageData.find(list=>list._id===selectedId);
         if(selectedList){
           const newDataArray = selectedList.data.map(todo=>{
-            if(todo.id===editedTodo.id){
+            if(todo._id===editedTodo._id){
               return editedTodo;
             } else {
               return todo;
@@ -103,7 +103,7 @@ function TodoApp(){
           alert("Error in addNewTodo");
         }
       }
-      const selectedList = localStorageData.find(list=>list.id===selectedId);;
+      const selectedList = localStorageData.find(list=>list._id===selectedId);;
       return (
         <>
           <Sidebar todosListArrays={localStorageData} addList={addList} deleteList={deleteList} selectedId={selectedId} changeSelectedId={changeSelectedId} />
