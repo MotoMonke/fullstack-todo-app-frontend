@@ -1,0 +1,135 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1877f2;
+}
+.app-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.app{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap:200px;
+}
+@media (max-width:750px){
+  .app{
+    flex-direction: column;
+  }
+}
+/*Display todos*/
+.display-todos{
+  background-color: white;
+}
+.todo-list-name{
+  background-color:#d4d5d6;
+  padding: 1rem 2rem;
+}
+.todo-list-name h1{
+  margin: 0;
+}
+.create-and-see-todos{
+  padding: 2rem 3rem;
+}
+.todo{
+  display: flex;
+  width:100%;
+  gap:10px;
+  align-items: center;
+  border-bottom: 1px soli gray;
+}
+.todo-text:hover,.completed-todo-text:hover{
+  cursor: pointer;
+}
+.completed-todo-text{
+  text-decoration: line-through;
+}
+.create-todo{
+  margin-top: 1.5rem;
+}
+.create-todo button{
+  background-color: white;
+  border: none;
+  font-weight: bold;
+  font-size:1.3rem;
+  color:#1877f2;
+}
+.create-todo input{
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 1rem;
+}
+/*Sidebar*/
+.add-new-list *{
+  font-size:1rem;
+}
+.add-new-list button{
+  border:none;
+  background-color: #1877f2;
+  color:white;
+  font-weight: bold;
+}
+.add-new-list input {
+  border:none;
+  background-color: #1877f2;
+  border-bottom: 2px solid white;
+  color:white;
+}
+.add-new-list input:focus {
+  border:none;
+  background-color: #1877f2;
+  border-bottom: 2px solid white;
+  color:white;
+  outline: none;
+}
+.sidebar h2{
+  color: white;
+}
+.list-of-lists {
+  color:white;
+  padding-left: 1.5rem;
+}
+.list-of-lists li{
+  margin:0.5rem 0;
+}
+.list-selected{
+  list-style-type: circle;
+}
+ul li::marker{
+  font-size: 1.2rem;
+}
+.list-content{
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+li button{
+  border: none;
+  color:white;
+  background-color:#1877f2;
+  font-weight: bold;
+  font-size:1rem;
+}
+li div:hover{
+  cursor: pointer;
+}
+/*Links*/
+.links{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.links a{
+  color:white;
+  
+}

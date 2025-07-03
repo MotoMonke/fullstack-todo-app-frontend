@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { TodoList } from "../types";
+import type { TodoList } from "../../types";
 import axios from "axios";
+import "./SaveData.css"
 function SaveData(){
     function getLocalStorageData():TodoList[]{
         const data = localStorage.getItem('DATA');
@@ -63,22 +64,30 @@ function SaveData(){
     const [localStorageData,setLocalStorageData] = useState<TodoList[]>(getLocalStorageData);
     const [dataToSave,setDataToSave] = useState<TodoList[]>([]);
     return(
-        <>
+          <div className="save-data-page">
+            <div className="data-manipulation-container">
+                <div className="local-data-div"> 
+                  <h1>Local data:</h1>
+                    {localStorageData.map(list => (
+                      <div className="todo-list" key={list._id} onClick={() => selectListToSave(list)}>
+                        {list.name}
+                      </div>
+                    ))}
+                </div>
+                <div className="data-to-save-div">
+                  <h1>Data to save</h1>
+                  {dataToSave.map(list => (
+                    <div className="todo-list" key={list._id} onClick={() => unstage(list)}>
+                      {list.name}
+                    </div>
+                  ))}
+                  <button onClick={saveToCloud} disabled={dataToSave.length === 0}>
+                    Save to cloud
+                  </button>
+                </div>
+            </div>
             <a href="/">Go to main page</a>
-            <h1>Local data:</h1>
-            <div>
-                {localStorageData.map(list=>(
-                    <div key={list._id} onClick={()=>selectListToSave(list)} >{list.name}</div>
-                ))}
-            </div>
-            <h1>Data to save</h1>
-            <div>
-                {dataToSave.map(list=>(
-                    <div key={list._id} onClick={()=>unstage(list)} >{list.name}</div>
-                ))}
-            </div>
-            <button onClick={saveToCloud} disabled={dataToSave.length===0}>Save to cloud</button>
-        </>
+        </div>
     );
 }
 export default SaveData;

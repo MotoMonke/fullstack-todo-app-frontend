@@ -32,15 +32,20 @@ function DisplayTodos({todoList,addNewTodo,deleteTodo,editTodo}:DisplayTodosProp
         }
     }
     return(
-        <div className="todos-display">
-            <div className="create-todo">
-                <input type="text" value={text} onChange={e=>setText(e.target.value)} />
-                <button onClick={createTodo}>Add</button>
+        <div className="display-todos">
+            <div className="todo-list-name">
+                <h1>{todoList.name}</h1>
             </div>
-            <div className="todo-list">
-                {todoList.data.map(todo=>(
-                    <TodoComponent key={todo._id} todo={todo} deleteTodo={deleteTodo} editTodo={editTodo}/>
-                ))}
+            <div className="create-and-see-todos">
+                <div className="todo-list">
+                    {todoList.data.map(todo=>(
+                        <TodoComponent key={todo._id} todo={todo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                    ))}
+                </div>
+                <div className="create-todo">
+                    <input type="text" value={text} onChange={e=>setText(e.target.value)} placeholder="new task name"/>
+                    <button onClick={createTodo}>+</button>
+                </div>
             </div>
         </div>
     )
@@ -61,8 +66,8 @@ function TodoComponent({todo,deleteTodo,editTodo}:TodoComponentProps){
     }
     return(
         <div className="todo">
-            <input type="checkbox" checked={todo.done} onChange={handleDoneChange}/>
-            {!isEditing&&<div onClick={changeIsEditing} className="todo-text">{todo.text}</div>}
+            <input className="checkbox" type="checkbox" checked={todo.done} onChange={handleDoneChange}/>
+            {!isEditing&&<div onClick={changeIsEditing} className={todo.done?"completed-todo-text":"todo-text"}>{todo.text}</div>}
             {isEditing&&<EditTodoText todo={todo} editTodo={editTodo} changeIsEditing={changeIsEditing} />}
             <button onClick={handleDelete}>X</button>
         </div>

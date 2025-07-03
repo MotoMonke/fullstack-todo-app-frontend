@@ -23,17 +23,20 @@ function Sidebar({todosListArrays,addList,deleteList,selectedId,changeSelectedId
     }
     return(
     <div className="sidebar">
-        <div className="list-of-lists">
+        <h2>My lists</h2>
+        <ul className="list-of-lists">
             {todosListArrays.map(list=>(
-                <div className={list._id===selectedId?"list selected":"list"} key={list._id}  >
-                    <div onClick={()=>handleClick(list._id)}>{list.name}</div>
-                    <button onClick={()=>deleteList(list._id)}>X</button>    
-                </div>
+                <li className={list._id===selectedId?"list-selected":"list"} key={list._id}  >
+                    <div className="list-content">
+                        <div onClick={()=>handleClick(list._id)}>{list.name}</div>
+                        <button onClick={()=>deleteList(list._id)}>Delete</button>    
+                    </div>
+                </li>
             ))}
-        </div>
+        </ul>
         <div className="add-new-list">
-            <input type="text" value={text} onChange={e=>setText(e.target.value)} />
             <button onClick={createList} >+</button>
+            <input spellCheck="false" type="text" value={text} onChange={e=>setText(e.target.value)} />
         </div>
     </div>
     );

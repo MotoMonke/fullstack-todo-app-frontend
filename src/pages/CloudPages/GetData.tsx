@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import type { TodoList } from "../types";
+import type { TodoList } from "../../types";
+import "./GetData.css"
 function GetData(){
     const [fetchedData,setFetchedData] = useState<TodoList[]>([]); 
     const [dataToSave,setDataToSave] = useState<TodoList[]>([]); 
@@ -74,27 +75,32 @@ function GetData(){
         }
     }
     return(
-        <>
-            <div className="get-data">
-                <button disabled={fetchedData.length>0||dataToSave.length>0} onClick={getData}>Get data</button>
-                <div className="fetched-data-container">
-                    {fetchedData.map(list=>(
-                        <div key={list._id} className="fetched-todo-list">
-                            <div onClick={()=>selectToSave(list)}>{list.name}</div>
-                            <button onClick={()=>deleteData(list._id)}>Delete from cloud</button>
-                        </div>
+        
+        <div className="get-data-page">
+            <div className="data-manipulation-container">
+                <div className="get-data">
+                    <h1>Get data from cloud</h1>
+                    <button disabled={fetchedData.length>0||dataToSave.length>0} onClick={getData}>Get data</button>
+                    <div className="fetched-data-container">
+                        {fetchedData.map(list=>(
+                            <div key={list._id} className="fetched-todo-list">
+                                <div onClick={()=>selectToSave(list)}>{list.name}</div>
+                                <button className="delete-btn" onClick={()=>deleteData(list._id)}>Delete from cloud</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="save-data">
+                    <h1>Save data locally</h1>
+                    {dataToSave.map(list=>(
+                        <div className="todo-list-save" key={list._id} onClick={()=>unstage(list)}>{list.name}</div>
                     ))}
+                    <button disabled={dataToSave.length===0} onClick={saveData}>Save data locally</button>
                 </div>
             </div>
-            <div className="save-data">
-                <h1>Data to save locally</h1>
-                {dataToSave.map(list=>(
-                    <div key={list._id} onClick={()=>unstage(list)}>{list.name}</div>
-                ))}
-                <button disabled={dataToSave.length===0} onClick={saveData}>Save data locally</button>
-            </div>
             <a href="/">Go to main page</a>
-        </>
+        </div>
+        
     );
 }
 export default GetData;

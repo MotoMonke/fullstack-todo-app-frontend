@@ -1,9 +1,9 @@
 import TodoApp from "./pages/TodoApp"
-import Login from "./pages/Login"
-import Signup from "./pages/Signup"
+import Login from "./pages/AuthPages/Login"
+import Signup from "./pages/AuthPages/Signup"
 import ProtectedRoute from "./pages/ProtectedRoute"
-import GetData from "./pages/GetData"
-import SaveData from "./pages/SaveData"
+import GetData from "./pages/CloudPages/GetData"
+import SaveData from "./pages/CloudPages/SaveData"
 import { BrowserRouter,Routes,Route } from "react-router-dom"
 function App() {
   return (

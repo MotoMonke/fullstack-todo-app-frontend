@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react'
 import Sidebar from './Sidebar'
 import DisplayTodos from './DisplayTodos.tsx';
 import type {TodoList,Todo} from "../types.ts"
-
+import "./TodoApp.css"
 function TodoApp(){
     function getData():TodoList[]{
         const data = localStorage.getItem('DATA');
@@ -105,13 +105,16 @@ function TodoApp(){
       }
       const selectedList = localStorageData.find(list=>list._id===selectedId);;
       return (
-        <>
-          <a href="/get-data">Download data from cloud</a>
-          <br />
-          <a href="/save-data">Save data to cloud</a>
-          <Sidebar todosListArrays={localStorageData} addList={addList} deleteList={deleteList} selectedId={selectedId} changeSelectedId={changeSelectedId} />
-          {selectedList&&<DisplayTodos todoList={selectedList} addNewTodo={addNewTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>}
-        </>
+          <div className="app-container">
+            <div className="app">
+              <Sidebar todosListArrays={localStorageData} addList={addList} deleteList={deleteList} selectedId={selectedId} changeSelectedId={changeSelectedId} />
+              {selectedList&&<DisplayTodos todoList={selectedList} addNewTodo={addNewTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>}
+            </div>
+            <div className='links'>
+              <a href="/get-data">Download data from cloud</a>
+              <a href="/save-data">Save data to cloud</a>
+            </div>
+          </div>
       )
 }
 export default TodoApp;
