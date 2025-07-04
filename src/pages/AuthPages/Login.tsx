@@ -11,8 +11,12 @@ function Login(){
         e.preventDefault();
 
         try {
+            const apiUrl = import.meta.env.VITE_LOGIN_URL;
+            if (!apiUrl) {
+                throw new Error("Missing REACT_APP_LOGIN_URL environment variable");
+            }
             const res = await axios.post(
-                "http://localhost:5001/api/auth/login",
+                apiUrl,
                 { userName, password },
                 { withCredentials: true }
             )
@@ -47,7 +51,7 @@ function Login(){
                         onChange={e=>setPassword(e.target.value)}
                     />
                 </div>
-                {errorMessage.length>0&&<p className="error">{errorMessage}</p>}
+                {errorMessage&&<p className="error">{errorMessage}</p>}
                 <button type="submit">Submit</button>
             </form>
             <p>Don't have an account?<a href="/signup">Signup</a></p>

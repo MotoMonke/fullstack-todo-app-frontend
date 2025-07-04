@@ -47,7 +47,11 @@ function SaveData(){
             return;
         }
         try {
-            const res = await axios.post("http://localhost:5001/api/todo/save", 
+          const apiUrl = import.meta.env.VITE_SAVE_DATA_URL;
+            if (!apiUrl) {
+                throw new Error("Missing REACT_APP_SAVE_DATA_URL environment variable");
+            }
+            const res = await axios.post(apiUrl, 
                 {todoListsArray:dataToSave},
                 {withCredentials: true,});
             if(res.status===200){

@@ -7,7 +7,11 @@ function GetData(){
     const [dataToSave,setDataToSave] = useState<TodoList[]>([]); 
     async function getData(){
         try {
-            const res = await axios.get("http://localhost:5001/api/todo/get", {
+            const apiUrl = import.meta.env.VITE_GET_DATA_URL;
+            if (!apiUrl) {
+                throw new Error("Missing REACT_APP_GET_DATA_URL environment variable");
+            }
+            const res = await axios.get(apiUrl, {
                 withCredentials: true,
               });
             if(res.status===200){
@@ -63,7 +67,11 @@ function GetData(){
     }
     async function deleteData(_id:String){
         try {
-            const res = await axios.delete("http://localhost:5001/api/todo/delete",{ 
+            const deleteURL = import.meta.env.VITE_DELETE_URL;
+            if(!deleteURL){
+                throw new Error("Missing VITE_DELETE_URL environment variable");
+            }
+            const res = await axios.delete(deleteURL,{ 
                 data:{list_id:_id},
                 withCredentials: true});
             if(res.status===200){

@@ -11,8 +11,12 @@ function Signup(){
         e.preventDefault();
 
         try {
+            const apiUrl = import.meta.env.VITE_SIGNUP_URL;
+            if (!apiUrl) {
+                throw new Error("Missing REACT_APP_SIGNUP_URL environment variable");
+            }
             const res = await axios.post(
-                "http://localhost:5001/api/auth/signup",
+                apiUrl,
                 { userName, password },
                 { withCredentials: true }
             )
