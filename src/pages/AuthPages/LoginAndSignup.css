@@ -44,4 +44,7 @@ form input{
   padding: 0.5rem 2rem;
   font-size: 1.3rem;
 }
+.error{
+  color: red;
+}
 

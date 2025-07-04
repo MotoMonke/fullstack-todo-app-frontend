@@ -113,6 +113,7 @@ function TodoApp(){
             <div className='links'>
               <a href="/get-data">Download data from cloud</a>
               <a href="/save-data">Save data to cloud</a>
+              <a href="/manual">Manual</a>
             </div>
           </div>
       )

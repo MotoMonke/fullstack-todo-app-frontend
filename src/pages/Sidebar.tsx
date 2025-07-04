@@ -10,6 +10,9 @@ type SidebarProps = {
 function Sidebar({todosListArrays,addList,deleteList,selectedId,changeSelectedId}: SidebarProps){
     const [text,setText] = useState("");
     function createList():void{
+        if(text.length===0){
+            return;
+        }
         const newList = {
             _id:crypto.randomUUID(),
             name:text,

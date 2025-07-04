@@ -4,6 +4,7 @@ import Signup from "./pages/AuthPages/Signup"
 import ProtectedRoute from "./pages/ProtectedRoute"
 import GetData from "./pages/CloudPages/GetData"
 import SaveData from "./pages/CloudPages/SaveData"
+import Manual from "./pages/ManualPage"
 import { BrowserRouter,Routes,Route } from "react-router-dom"
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<TodoApp />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/manual" element={<Manual/>}></Route>
         <Route element={<ProtectedRoute/>}>
           <Route path="/get-data" element={<GetData/>}></Route>
           <Route path="/save-data" element={<SaveData/>}></Route>

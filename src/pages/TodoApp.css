@@ -61,10 +61,16 @@ body {
   font-size:1.3rem;
   color:#1877f2;
 }
+.create-todo button:hover{
+  cursor: pointer;
+}
 .create-todo input{
   border: none;
   border-bottom: 2px solid black;
   font-size: 1rem;
+}
+.create-todo input:focus{
+  outline: none;
 }
 /*Sidebar*/
 .add-new-list *{
@@ -75,6 +81,9 @@ body {
   background-color: #1877f2;
   color:white;
   font-weight: bold;
+}
+.add-new-list button:hover{
+  cursor: pointer;
 }
 .add-new-list input {
   border:none;
@@ -131,5 +140,9 @@ li div:hover{
 }
 .links a{
   color:white;
-  
+  text-align: center;
+}
+/*Manual page*/
+.manual-page *{
+  color:white;
 }

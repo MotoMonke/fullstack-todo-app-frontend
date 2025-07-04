@@ -5,6 +5,7 @@ import "./LoginAndSignup.css"
 function Signup(){
     const [userName,setUserName] = useState("");
     const [password,setPassword] = useState("");
+    const [errorMessage,setErrorMessage] = useState("");
     const navigate = useNavigate();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
@@ -16,8 +17,10 @@ function Signup(){
                 { withCredentials: true }
             )
             navigate("/login");
-        } catch (error) {
+        } catch (error:any) {
             console.log("Login failed: "+error);
+            console.log(error.response?.data.message);
+            setErrorMessage(error.response?.data.message)
         }
     }
     return(
@@ -44,6 +47,7 @@ function Signup(){
                         onChange={e=>setPassword(e.target.value)}
                     />
                 </div>
+                {errorMessage.length>0&&<p className="error">{errorMessage}</p>}
                 <button type="submit">Submit</button>
             </form>
             <p>Already have an account?<a href="/login">Login</a></p>
