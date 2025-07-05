@@ -47,9 +47,9 @@ function SaveData(){
             return;
         }
         try {
-          const apiUrl = import.meta.env.VITE_SAVE_DATA_URL;
+          const apiUrl = import.meta.env.VITE_API_URL+"/api/todo/save";
             if (!apiUrl) {
-                throw new Error("Missing REACT_APP_SAVE_DATA_URL environment variable");
+                throw new Error("Missing VITE_API_URL environment variable");
             }
             const res = await axios.post(apiUrl, 
                 {todoListsArray:dataToSave},

@@ -11,9 +11,9 @@ function Login(){
         e.preventDefault();
 
         try {
-            const apiUrl = import.meta.env.VITE_LOGIN_URL;
+            const apiUrl = import.meta.env.VITE_API_URL+"/api/auth/login";
             if (!apiUrl) {
-                throw new Error("Missing REACT_APP_LOGIN_URL environment variable");
+                throw new Error("Missing VITE_API_URL environment variable");
             }
             const res = await axios.post(
                 apiUrl,

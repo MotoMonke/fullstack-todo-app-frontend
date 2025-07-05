@@ -7,9 +7,9 @@ function GetData(){
     const [dataToSave,setDataToSave] = useState<TodoList[]>([]); 
     async function getData(){
         try {
-            const apiUrl = import.meta.env.VITE_GET_DATA_URL;
+            const apiUrl = import.meta.env.VITE_API_URL+"/api/todo/get";
             if (!apiUrl) {
-                throw new Error("Missing REACT_APP_GET_DATA_URL environment variable");
+                throw new Error("Missing VITE_API_URL environment variable");
             }
             const res = await axios.get(apiUrl, {
                 withCredentials: true,
@@ -48,7 +48,7 @@ function GetData(){
                     //overwriting local todo list by downloaded list if _id mathces
                     const updated = parsed.map(element=>{
                         if(element._id===found._id){
-                            return found;
+                            return list;
                         } else {
                             return element;
                         }
@@ -67,9 +67,9 @@ function GetData(){
     }
     async function deleteData(_id:String){
         try {
-            const deleteURL = import.meta.env.VITE_DELETE_URL;
+            const deleteURL = import.meta.env.VITE_API_URL+"/api/todo/delete";
             if(!deleteURL){
-                throw new Error("Missing VITE_DELETE_URL environment variable");
+                throw new Error("Missing VITE_API_URL environment variable");
             }
             const res = await axios.delete(deleteURL,{ 
                 data:{list_id:_id},
@@ -82,6 +82,8 @@ function GetData(){
             console.log(error);
         }
     }
+    console.log("fetchedData:", fetchedData);
+    console.log("dataToSave:", dataToSave);
     return(
         
         <div className="get-data-page">

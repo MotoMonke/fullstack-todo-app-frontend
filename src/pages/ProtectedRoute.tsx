@@ -9,9 +9,16 @@ export default function ProtectedRoute() {
   useEffect(() => {
     async function checkAuth() {
       try {
-        const res = await axios.get("http://localhost:5001/api/auth/check", {
+        const checkURL = import.meta.env.VITE_API_URL+"/api/auth/check"
+        if(!checkURL){
+          throw new Error("Missing VITE_API_URL environment variable")
+        }
+        console.log("Sending auth check request...");
+        const res = await axios.get(checkURL, {
           withCredentials: true,
         });
+        console.log("Response received", res.status);
+        console.log(res.status)
         if (res.status===200) {
           setIsAuthenticated(true);
         } else {
