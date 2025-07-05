@@ -20,6 +20,7 @@ function Signup(){
                 { userName, password },
                 { withCredentials: true }
             )
+            console.log(res);
             navigate("/login");
         } catch (error:any) {
             console.log("Login failed: "+error);
